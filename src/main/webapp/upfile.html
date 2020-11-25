@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+    <!--圆形头像css写法.round_icon-->
+    <style>
+        .round_icon{
+            width: 60px;
+            height: 60px;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 600px;background-color: cornsilk;height: 200px;margin: auto">
+        <form action="/upload/uploadFile2" method="post" enctype="multipart/form-data">
+            <label>请选择图片：</label>
+            <input type="file" name="upload" />
+            <input type="submit" value="确定上传">
+        </form>
+    </div>
+  <img src="/#(AvatarPath)" class="round_icon"  alt="">
+</body>
+</html>

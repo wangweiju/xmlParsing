@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+        <tree id = "12">
+                <name>烟台局</name>
+                <pid>1</pid>
+        </tree>
+        <tree id="13">
+               <name>日照局</name>
+               <pid>1</pid>
+        </tree>
+        <tree id="14">
+                <name>变电站</name>
+                <pid>9</pid>
+        </tree>
+        <tree id="15">
+                <name>变电站</name>
+                <pid>8</pid>
+        </tree>
+        <tree id="16">
+                <name>变电站3</name>
+                <pid>2</pid>
+        </tree>
+        <tree id="17">
+                <name>滨州局</name>
+                <pid>1</pid>
+        </tree>
+</root>

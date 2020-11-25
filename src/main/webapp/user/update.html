@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>update user</title>
+</head>
+<body>
+<form action="/user/dosave2" method="post">
+    <input type="hidden" name="id" value="#(user.id)">
+
+    登录名： <input type="text" name="name" value="#(user.name)"> <br/>
+    密&nbsp&nbsp&nbsp码： <input type="text" name="password" value="#(user.password)"> <br/>
+    <input type="submit" value="提交数据">
+</form>
+</body>
+</html>

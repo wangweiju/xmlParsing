@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>树组件</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
+<br>
+<div class="layui-fluid">
+    <div class="layui-col-md12" style="padding: 20px; background-color: #F2F2F2;">
+        <div class="layui-card">
+            <div class="layui-card-header" style=" margin:0 auto">解析XML，并且封装成一棵树，结果如下所示：</div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-xs6">
+            <div id="tree"></div>
+        </div>
+        <div class="layui-col-xs6">
+            <div id="table"></div>
+        </div>
+    </div>
+</div>
+<script src="../jquery/jquery-3.4.1.js"></script>
+<script src="../jquery/jquery-3.4.1.min.js"></script>
+<script src="../layui/layui.js"></script>
+<script>
+    //渲染树的数据
+    layui.use(['tree','util'], function(){
+        var tree = layui.tree;
+        var util = layui.util;
+        //渲染树组件
+        tree.render({
+            elem: '#tree', //绑定元素
+            data: getTreeData(),
+            id: 'treeId',
+            showCheckbox: false, //是否显示复选框
+            onlyIconControl: true,
+            click:function (obj) {  //点击树节点将相关数据渲染至表格
+                var id = obj.data.id;
+                $.ajax({
+                    url:"/tree/tableData",
+                    type: "post",
+                    data:{id},
+                    success(res) {
+                        console.log(res);
+                        layui.use('table', function(){
+                            var table = layui.table;
+                            table.render({
+                                elem: '#table',
+                                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                                page: true,
+                                data: res,
+                                cols: [[
+                                    {field:'id', title: 'ID', sort: true},
+                                    {field:'name', title: '名称'},
+                                    {field:'pid', title: '父节点'}
+                                ]]
+                            });
+                        });
+                    }
+                })
+            }
+        });
+        //从后台获取数据
+        function getTreeData(){
+            var TreeData;
+            $.ajax({
+                url:"/tree/treeData", //后台请求数据地址
+                type:"post",
+                datatype:"Json",
+                async:false,
+                success:function (result) {
+                    //console.log(result);
+                    var data = [result[0]];
+                    TreeData = data;
+                }
+            });
+            return TreeData;
+        }
+    });
+</script>
+</body>
+</html>
